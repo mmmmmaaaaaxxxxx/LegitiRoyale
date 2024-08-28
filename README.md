@@ -1,4 +1,4 @@
-README ISNT DONE
+THIS README IS NOT DONE
 # LegitiRoyale
 Battle royale template for the legitimoose.com Minecraft server.
 
@@ -13,17 +13,17 @@ The list should contain maps with the keys "name", "duration", and "command." Th
 Example: /data modify storage br:api phases set value [{name:"Grace Period",duration:3600,command:"function gen:phase/grace_period"},{name:"Battle!",duration:6000,command:"function gen:phase/battle"},{name:"Deathmatch",duration:12000,command:"function gen:phase/deathmatch"}]
 
 ## Functions
-
+The game is started with the function br:api/start_game {distance:\<integer maximum distance to randomly teleport players out\>}
 
 ## Tags
 Players with the tag "br.player" when the game starts will be placed into the game.
 
-Players without that tag will be given the tag "br.spectator" and will be set to spectate the game. They will also receive this tag and lose br.player if they die during the game.
+Players without the tag "br.player" will be given the tag "br.spectator" and will be set to spectate the game. Players will also receive this tag and lose br.player if they die during the game.
 
 At the end of the game, all remaining players will be given the tag "br.winner"
 
 ## Scoreboards
-The scoreboard #game_progress for the objective br.main contains values based on what state the game is in.
+The scoreboard #game_progress for the objective br.main contains values based on what state the game is in. You can read this, but don't write to it.
 
 0 - The game hasnt started yet.
 
@@ -34,3 +34,7 @@ The scoreboard #game_progress for the objective br.main contains values based on
 3 - The game is over (someone has won.)
 
 4 - The world is restarting.
+
+# How it works
+This datapack takes advantage of the feature unique to legitimoose.com that dimensions other than the default slime world are not saved on world load. It is able to generate random worlds by forcing the world closed, which it does by kicking all players to the lobby using massive packets and waiting 30 seconds for the world to time out.
+It has to restart to avoid generating too much world data size, but it can run multiple games before restarting. Right now, it generates 10 games in a session before it restarts, but that number is arbitrary and I have not tested to see if it could be higher.
