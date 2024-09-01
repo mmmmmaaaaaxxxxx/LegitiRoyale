@@ -35,6 +35,8 @@ The scoreboard #game_progress for the objective br.main contains values based on
 
 4 - The world is restarting.
 
+The scoreboard #player_count br.main is the number of players left in the game.
+
 # How it works
 This datapack takes advantage of the feature unique to legitimoose.com that dimensions other than the default slime world are not saved on world load. It is able to generate random worlds by forcing the world closed, which it does by kicking all players to the lobby using massive packets and waiting 30 seconds for the world to time out.
 It has to restart to avoid generating too much world data size, but it can run multiple games before restarting. Right now, it generates 10 games in a session before it restarts, but that number is arbitrary and I have not tested to see if it could be higher.
